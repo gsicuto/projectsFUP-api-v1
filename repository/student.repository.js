@@ -51,7 +51,7 @@ class StudentRepository {
         updateObject,
         { new: true },
       );
-      return updateObject;
+      return updatedStudent;
     } catch (error) {
       throw new Error(error);
     }

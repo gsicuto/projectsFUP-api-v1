@@ -14,4 +14,9 @@ router.post('/', async (req, res) => {
   return res.status(201).json(newStudent);
 });
 
+router.put('/:id', async (req, res) => {
+  const updatedStudent = await studentRepo.updateOne(req.body, req.params.id);
+  return res.status(200).json(updatedStudent);
+});
+
 module.exports = router;
