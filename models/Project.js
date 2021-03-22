@@ -6,7 +6,7 @@ const projectSchema = new Schema(
     image: String,
     students: [{ type: Schema.Types.ObjectId, ref: 'Student' }],
     presentation: Date,
-    followUps: [{ type: Schema.Types.ObjectId, ref: 'FollowUps' }],
+    // followUps: [{ type: Schema.Types.ObjectId, ref: 'FollowUps' }],
   },
   {
     timestamps: true,

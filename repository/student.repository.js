@@ -40,7 +40,7 @@ class StudentRepository {
     try {
       await this.Student.findByIdAndDelete(id);
     } catch (error) {
-      throw new Error(error);
+      throw new ApplicationError(error);
     }
   }
 
@@ -53,7 +53,7 @@ class StudentRepository {
       );
       return updatedStudent;
     } catch (error) {
-      throw new Error(error);
+      throw new ApplicationError(error);
     }
   }
 }
