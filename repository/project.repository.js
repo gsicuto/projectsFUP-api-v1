@@ -15,6 +15,15 @@ class ProjectRepository {
     }
   }
 
+  async getByTitle(title) {
+    try {
+      const project = await this.Project.findByTitle(title).populate('students').populate('followUps');
+      return project;
+    } catch (error) {
+      throw new ApplicationError(error);
+    }
+  }
+
   async getOne(id, populate = false) {
     try {
       const project = populate
