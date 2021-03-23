@@ -31,6 +31,7 @@ class StudentRepository {
       const student = new this.Student(newStudent);
 
       await student.save();
+      return student;
     } catch (error) {
       throw new ApplicationError(error);
     }
