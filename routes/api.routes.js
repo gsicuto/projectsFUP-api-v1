@@ -1,9 +1,9 @@
 const { Router } = require('express');
 
+const jwt = require('jsonwebtoken');
 const studentsRoutes = require('./studentsRoutes/students.routes');
 const projectsRoutes = require('./projectsRoutes/projects.routes');
 const authRoutes = require('./authRoutes/auth.routes');
-const jwt = require('jsonwebtoken');
 
 const router = Router();
 
