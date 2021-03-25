@@ -43,6 +43,9 @@ npm run dev
 
 **`http://localhost:3000/api`**.
 
+You can test with:
+**`https://fupprojects.herokuapp.com/api`**
+
 The common endpoints are the following:
 
 All end point except /auth need to be access with token on Authorization header
