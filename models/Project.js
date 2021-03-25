@@ -6,13 +6,11 @@ const projectSchema = new Schema(
     image: String,
     students: [{ type: Schema.Types.ObjectId, ref: 'Student' }],
     presentation: Date,
-    // followUps: [{ type: Schema.Types.ObjectId, ref: 'FollowUps' }],
+    followUps: [{ type: Schema.Types.ObjectId, ref: 'FollowUp' }],
   },
   {
     timestamps: true,
   },
 );
-
-projectSchema.statics.findByTitle = title => this.find({ title: new RegExp(title, 'i') });
 
 module.exports = model('Project', projectSchema);
