@@ -13,6 +13,4 @@ const projectSchema = new Schema(
   },
 );
 
-projectSchema.statics.findByTitle = title => this.find({ title: new RegExp(title, 'i') });
-
 module.exports = model('Project', projectSchema);

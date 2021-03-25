@@ -5,7 +5,13 @@ const projectRepo = require('../../../repository/project.repository');
 const router = Router();
 
 router.get('/list', async (req, res) => {
-  const projects = await projectRepo.getAll();
+  const { title } = req.query;
+  if (!title) {
+    const projects = await projectRepo.getAll();
+    return res.status(200).json(projects);
+  }
+  const projects = await projectRepo.getByTitle(title);
+  console.log(projects);
   return res.status(200).json(projects);
 });
 
@@ -13,6 +19,7 @@ router.post('/', async (req, res) => {
   const newProject = await projectRepo.create(req.body);
   return res.status(201).json(newProject);
 });
+
 
 router.get('/:id', async (req, res) => {
   const updateProject = await projectRepo.getOne(req.params.id, true);
