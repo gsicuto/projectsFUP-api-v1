@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -10,6 +11,8 @@ const logger = require('morgan');
 require('./configs/db.config');
 
 const app = express();
+
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
