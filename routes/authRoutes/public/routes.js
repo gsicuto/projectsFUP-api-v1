@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 const { Router } = require('express');
 
 const userRepo = require('../../../repository/user.repository');
@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
     { expiresIn: process.env.EXPIRATION_AUTH_TOKEN },
   );
   res.set('Authorization', token);
-  res.status(204).json();
+  return res.status(204).json();
 });
 
 module.exports = router;
