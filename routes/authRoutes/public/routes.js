@@ -1,7 +1,9 @@
+const jwt = require('jsonwebtoken')
 const { Router } = require('express');
 
 const userRepo = require('../../../repository/user.repository');
-const authUtils = require('../../../utils/auth.utils')
+const authUtils = require('../../../utils/auth.utils');
+
 
 const router = Router();
 
@@ -14,10 +16,23 @@ router.post('/login', async (req, res) => {
   const { username, password } = req.body;
   const user = await userRepo.findUser(username);
 
-  if (authUtils.compare(password, user.hash)) {
-    return res.status(202).json({ message: `User ${user.username} loggedIn` });
+  if (!user) {
+    return res.status(400).json();
   }
-  return res.status(401).json({ message: 'Not Allowed' });
+
+  if (!authUtils.compare(password, user.hash)) {
+    return res.status(400).json();
+  }
+
+  const payload = { id: user.id };
+
+  const token = jwt.sign(
+    payload,
+    process.env.TOKEN_SECRET,
+    { expiresIn: process.env.EXPIRATION_AUTH_TOKEN },
+  );
+  res.set('Authorization', token);
+  res.status(204).json();
 });
 
 module.exports = router;

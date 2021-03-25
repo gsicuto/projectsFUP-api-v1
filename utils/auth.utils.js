@@ -2,15 +2,17 @@ const bcrypt = require('bcryptjs');
 
 class AuthUtils {
   constructor() {
-    this.salt = 10;
+    this.saltRounds = 10;
   }
 
   encrypt(password) {
-    return bcrypt.hashSync(password, this.salt);
+    const salt = bcrypt.genSaltSync(this.saltRounds);
+    return bcrypt.hashSync(password, salt);
   }
 
   compare(password, hash) {
     return bcrypt.compareSync(password, hash);
   }
 }
+
 module.exports = new AuthUtils();

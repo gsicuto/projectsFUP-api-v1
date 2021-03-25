@@ -1,12 +1,11 @@
 const User = require('../models/User');
-const auth = require('../utils/auth.utils')
+const auth = require('../utils/auth.utils');
 const ApplicationError = require('../errors/ApplicationError');
 
 
 class UserRepository {
   constructor(UserModel) {
     this.User = UserModel;
-    this.saltRounds = 10;
   }
 
   async findUser(username) {

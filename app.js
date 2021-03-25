@@ -2,17 +2,12 @@ require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+
 const logger = require('morgan');
 
-mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((x) => {
-    console.log(`Connected to Mongo! Database name: ${x.connections[0].name}`);
-  })
-  .catch((err) => {
-    console.error(`Error connecting to mongo: ${err}`);
-  });
+// Connect DB
+
+require('./configs/db.config');
 
 const app = express();
 
