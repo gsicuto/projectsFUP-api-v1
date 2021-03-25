@@ -4,9 +4,7 @@ const ApplicationError = require('../errors/ApplicationError');
 const studentSchema = new Schema(
   {
     name: String,
-    project: {
-      type: Schema.Types.ObjectId, ref: 'Project',
-    },
+    projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
   },
   {
     timestamps: true,

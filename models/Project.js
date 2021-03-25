@@ -5,8 +5,8 @@ const projectSchema = new Schema(
     title: String,
     image: String,
     students: [{ type: Schema.Types.ObjectId, ref: 'Student' }],
-    presentation: Date,
     followUps: [{ type: Schema.Types.ObjectId, ref: 'FollowUp' }],
+    presentation: Date,
   },
   {
     timestamps: true,

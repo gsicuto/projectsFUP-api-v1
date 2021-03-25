@@ -16,6 +16,16 @@ class StudentRepository {
     }
   }
 
+  async addNewProject(projectId, studentId) {
+    try {
+      const student = await this.getOne(studentId);
+      student.projects.push(projectId);
+      await student.save();
+    } catch (error) {
+      throw new ApplicationError(error);
+    }
+  }
+
   async getOne(id) {
     try {
       const student = await this.Student.findById(id).populate('project');

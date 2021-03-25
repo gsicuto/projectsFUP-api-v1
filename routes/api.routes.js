@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const studentsRoutes = require('./studentsRoutes/students.routes');
 const projectsRoutes = require('./projectsRoutes/projects.routes');
 const authRoutes = require('./authRoutes/auth.routes');
+const fupRoutes = require('./fupRoutes/fup.routes');
 
 const router = Router();
 
@@ -33,5 +34,6 @@ router.use((req, res, next) => {
 
 router.use('/students', studentsRoutes);
 router.use('/projects', projectsRoutes);
+router.use('/fups', fupRoutes);
 
 module.exports = router;

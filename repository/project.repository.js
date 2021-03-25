@@ -76,6 +76,16 @@ class ProjectRepository {
     }
   }
 
+  async addNewFup(projectId, fupId) {
+    try {
+      const project = await this.getOne(projectId);
+      project.followUps.push(fupId);
+      await project.save();
+    } catch (error) {
+      throw new ApplicationError(error);
+    }
+  }
+
   async removeStudent(projectId, studentId) {
     try {
       const project = await this.getOne(projectId);

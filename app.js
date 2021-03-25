@@ -19,6 +19,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //  Routes Middleware
 const apiRoutes = require('./routes/api.routes');
 
-app.use('/', apiRoutes);
+app.use('/api/', apiRoutes);
 
 module.exports = app;
