@@ -14,6 +14,10 @@ const app = express();
 
 app.use(cors());
 
+app.enableCors({
+  exposedHeaders: 'Authorization',
+});
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
