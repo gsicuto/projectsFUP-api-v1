@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
   );
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Authorization', token);
-  return res.status(204).json(token);
+  return res.status(204).json({ token });
 });
 
 module.exports = router;
