@@ -31,9 +31,8 @@ router.post('/login', async (req, res) => {
     process.env.TOKEN_SECRET,
     { expiresIn: process.env.EXPIRATION_AUTH_TOKEN },
   );
-  res.set('Access-Control-Allow-Origin', '*');
   res.set('Authorization', token);
-  return res.status(204).json({ token });
+  return res.status(200).json({ token });
 });
 
 module.exports = router;
