@@ -13,7 +13,7 @@ require('./configs/db.config');
 const app = express();
 
 app.use(cors(
-  { allowedHeaders: 'Authorization' },
+  { allowedHeaders: ['Content-Type', 'Authorization'] },
 ));
 
 
