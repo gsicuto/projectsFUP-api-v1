@@ -12,11 +12,14 @@ require('./configs/db.config');
 
 const app = express();
 
-app.use(cors());
-
 app.enableCors({
   exposedHeaders: 'Authorization',
 });
+
+app.use(cors(
+  { allowedHeaders: 'Authorization' }
+));
+
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
