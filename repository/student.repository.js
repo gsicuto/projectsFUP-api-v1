@@ -1,6 +1,5 @@
-const Student = require('../models/Student');
-const ApplicationError = require('../errors/ApplicationError');
-
+const Student = require("../models/Student");
+const ApplicationError = require("../errors/ApplicationError");
 
 class StudentRepository {
   constructor(StudentModel) {
@@ -9,7 +8,7 @@ class StudentRepository {
 
   async getAll() {
     try {
-      const students = await this.Student.find().populate('project');
+      const students = await this.Student.find().populate("project");
       return students;
     } catch (error) {
       throw new ApplicationError(error);
@@ -26,9 +25,25 @@ class StudentRepository {
     }
   }
 
+  async removeProject(projectId) {
+    try {
+      const students = await Student.find({ projects: studentId });
+      students.forEach(async (student) => {
+        const studentFromDb = await this.getOne(student._id);
+        const projectIndex = studentFromDb.projects.findIndex(
+          (project) => project._id === projectId
+        );
+        studentFromDb.projects.splice(projectIndex, 1);
+        studentFromDb.save();
+      });
+    } catch (error) {
+      throw new ApplicationError(error);
+    }
+  }
+
   async getOne(id) {
     try {
-      const student = await this.Student.findById(id).populate('project');
+      const student = await this.Student.findById(id).populate("project");
 
       return student;
     } catch (error) {
@@ -60,7 +75,7 @@ class StudentRepository {
       const updatedStudent = await this.Student.findByIdAndUpdate(
         id,
         updateObject,
-        { new: true },
+        { new: true }
       );
       return updatedStudent;
     } catch (error) {
