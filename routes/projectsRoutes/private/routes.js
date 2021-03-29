@@ -27,21 +27,34 @@ router.get("/:id", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  const updateProject = await projectRepo.updateOne(req.body, req.params.id);
-  return res.status(200).json(updateProject);
+  try {
+    const updateProject = await projectRepo.updateOne(req.body, req.params.id);
+    return res.status(200).json(updateProject);
+  } catch (error) {
+    return res.status(500).json({});
+  }
 });
 
 router.post("/add-student/:id", async (req, res) => {
-  const project = await projectRepo.addNewStudent(
-    req.params.id,
-    req.body.studentId
-  );
-  return res.status(200).json(project);
+  try {
+    const project = await projectRepo.addNewStudent(
+      req.params.id,
+      req.body.studentId
+    );
+    return res.status(200).json(project);
+  } catch (error) {
+    return res.status(500).json({});
+  }
 });
 
 router.delete("/:id", async (req, res) => {
-  await projectRepo.deleteOne(req.params.id);
-  await studentRepo.removeProject(req.params.id);
+  try {
+    await projectRepo.deleteOne(req.params.id);
+    await studentRepo.removeProject(req.params.id);
+    return res.status(200).json({});
+  } catch (error) {
+    res.status(500).json({});
+  }
 });
 
 module.exports = router;
