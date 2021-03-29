@@ -28,8 +28,8 @@ class StudentRepository {
   async removeProject(projectId) {
     try {
       const students = await Student.find({ projects: studentId });
-      students.forEach((student) => {
-        const studentFromDb = await this.getOne(student._id)
+      students.forEach(async (student) => {
+        const studentFromDb = await this.getOne(student._id);
         const projectIndex = studentFromDb.projects.findIndex(
           (project) => project._id === projectId
         );
