@@ -17,8 +17,12 @@ router.get("/list", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const newProject = await projectRepo.create(req.body);
-  return res.status(201).json(newProject);
+  try {
+    const newProject = await projectRepo.create(req.body);
+    return res.status(201).json(newProject);
+  } catch (error) {
+    return res.status(500).json({});
+  }
 });
 
 router.get("/:id", async (req, res) => {

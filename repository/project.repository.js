@@ -45,8 +45,8 @@ class ProjectRepository {
   async create(newProject) {
     try {
       const project = new this.Project(newProject);
-
       await project.save();
+      return project;
     } catch (error) {
       throw new ApplicationError(error);
     }
